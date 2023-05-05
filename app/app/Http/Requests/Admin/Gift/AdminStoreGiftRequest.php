@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Admin\Gift;
 
+use Carbon\Carbon;
 use Illuminate\Foundation\Http\FormRequest;
 
 class AdminStoreGiftRequest extends FormRequest
@@ -22,9 +23,28 @@ class AdminStoreGiftRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'start_time' => 'required|date_format:Y-m-d H:i',
+            'code' => 'required|unique:gift_cards,code|max:5',
+            'start_time' => 'required|date_format:Y-m-d H:i|after:now',
+            'end_time' => 'required|after:now',
             'usable_number' => 'required|numeric|min:1',
-            'usable_time' => 'required|numeric|min:1' //Gift code expiration time
+            'usable_time' => 'required|numeric|min:1' //Gift code expiration time (per sec)
         ];
+    }
+
+
+    /**
+     * @param $keys
+     * @return array
+     */
+    public function all( $keys = null ) : array
+    {
+        $request = request();
+
+        //create end time for start_time and attach to request value
+        $defaultTime = config('app.default_gift_card_usable_time');
+        $request['end_time'] = Carbon::createFromFormat('Y-m-d H:i', $request->start_time)
+                                   ->addMinutes(request()->usable_time ?? $defaultTime);
+
+        return $request->toArray();
     }
 }

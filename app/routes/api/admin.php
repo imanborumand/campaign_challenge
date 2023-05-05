@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::prefix( 'gift')
+Route::prefix( 'gift-cards')
      ->controller( AdminGiftCardController::class)
      ->group(function () {
 

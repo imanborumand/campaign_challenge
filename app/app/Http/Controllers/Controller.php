@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Concerns\ApiResponseTrait;
 use App\Services\ServiceBase;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -11,22 +12,13 @@ use Illuminate\Routing\Controller as BaseController;
 
 class Controller extends BaseController
 {
-    use AuthorizesRequests, ValidatesRequests;
+    use AuthorizesRequests, ValidatesRequests, ApiResponseTrait;
 
 
     protected ServiceBase $service;
 
 
-    protected function apiResponse(
-        mixed $response,
-        string $message = 'success_request',
-        int $httpCode = null
-    ) : JsonResponse
-    {
-        return response()->json([
-            'message' => $message,
-            'result' => $response], $httpCode);
-    }
+
 
 
 }

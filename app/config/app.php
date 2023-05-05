@@ -185,4 +185,7 @@ return [
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 
+
+
+    'default_gift_card_usable_time' => 60,
 ];

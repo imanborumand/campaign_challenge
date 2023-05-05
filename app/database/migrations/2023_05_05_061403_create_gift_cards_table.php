@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('gift_cards', function (Blueprint $table) {
             $table->id();
-            $table->string('code', 10)->index();
+            $table->string('code', 10)->index()->unique();
             $table->timestamp('start_time')->nullable()->comment('Campaign start time');
 
             $table->timestamp('end_time')
