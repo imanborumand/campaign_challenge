@@ -17,7 +17,7 @@ class UserParticipationToCampaignJob implements ShouldQueue
     /**
      * Create a new job instance.
      */
-    public function __construct()
+    public function __construct(private string $mobile, private string $code)
     {
         //
     }
@@ -27,5 +27,6 @@ class UserParticipationToCampaignJob implements ShouldQueue
      */
     public function handle(): void
     {
+        //todo check user and campaign
     }
 }

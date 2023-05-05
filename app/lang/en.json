@@ -3,5 +3,6 @@
     "success response": "Your request successfully handled!",
     "validation error": "Validation error, Please check your request",
     "not found response": "Not found!",
-    "campaign time error": "This campaign is not available now. Please pay attention to the start and end time of the campaign!"
+    "campaign time error": "This campaign is not available now. Please pay attention to the start and end time of the campaign!",
+    "participation campaign message": "We have received your request and queued it for processing. You can return to your panel after the end of the campaign and check the result."
 }

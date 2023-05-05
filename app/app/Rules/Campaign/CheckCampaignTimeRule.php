@@ -29,7 +29,7 @@ class CheckCampaignTimeRule implements ValidationRule
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-
+//        240441669211
         //Add to the cache to receive from the cache and not send a query to the database
         $campaignCache = Cache::get($value, function() use ($value) {
 

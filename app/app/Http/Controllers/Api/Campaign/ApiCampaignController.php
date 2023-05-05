@@ -19,8 +19,11 @@ class ApiCampaignController extends Controller
 
     public function participationToCampaign(ParticipationToCampaignRequest $request)
     {
-       //todo add job for add use to campaign
-
+       return $this->successResponse(__('participation campaign message'))
+           ->setResult(
+               $this->service->participationToCampaign($request->validated())
+           )->setHttpCode(202)
+            ->response();
     }
 
 }
