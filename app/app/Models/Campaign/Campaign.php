@@ -9,7 +9,18 @@ class Campaign extends Model
 
     protected $table  = 'campaigns';
 
-    protected $fillable = [
+
+    /**
+     * maximum gift code size
+     * note, this use in migration if change this number, must change database migrate for avoid errors
+     *
+     * @var int
+     */
+    public static int $MAX_CODE_LENGTH = 5;
+
+
+
+    protected  $fillable  = [
         //| id               | bigint unsigned | NO   | PRI | NULL    | auto_increment |
          'code',           //| varchar(10)     | NO   | MUL | NULL    |                |
          'start_time',     //| timestamp       | YES  |     | NULL    |                |

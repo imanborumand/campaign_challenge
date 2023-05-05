@@ -3,6 +3,7 @@
 namespace App\Services\Api\Campaign;
 
 
+use App\Models\Campaign\Campaign;
 use App\Repositories\Campaign\CampaignRepository;
 use App\Services\ServiceBase;
 
@@ -13,5 +14,13 @@ class CampaignService extends ServiceBase
     {
         $this->repository = $repository;
     }
+
+
+    public function getByCode(string $code) : Campaign
+    {
+        return $this->repository->getByCode($code);
+    }
+
+
 
 }

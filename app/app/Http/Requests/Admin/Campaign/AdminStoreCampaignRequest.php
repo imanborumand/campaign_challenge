@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Admin\Campaign;
 
 use App\Http\Requests\FormRequestBase;
+use App\Models\Campaign\Campaign;
 use Carbon\Carbon;
 use Illuminate\Contracts\Validation\Validator;
 
@@ -25,7 +26,7 @@ class AdminStoreCampaignRequest extends FormRequestBase
     public function rules(): array
     {
         return [
-            'code' => 'required|unique:campaigns,code|max:5',
+            'code' => 'required|unique:campaigns,code|max:' . Campaign::$MAX_CODE_LENGTH,
             'start_time' => 'required|date_format:Y-m-d H:i|after:now',
             'end_time' => 'required|after:now',
             'usable_number' => 'required|numeric|min:1',
@@ -45,7 +46,7 @@ class AdminStoreCampaignRequest extends FormRequestBase
         //create end time for start_time and attach to request value
         $defaultTime = config('app.default_gift_card_usable_time');
         $request['end_time'] = Carbon::createFromFormat('Y-m-d H:i', $request->start_time)
-                                   ->addMinutes(request()->usable_time ?? $defaultTime);
+                                   ->addMinutes($request->usable_time ?? $defaultTime);
 
         return $request->toArray();
     }

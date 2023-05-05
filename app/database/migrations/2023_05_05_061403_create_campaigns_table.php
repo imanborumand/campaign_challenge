@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Campaign\Campaign;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,7 +14,7 @@ return new class extends Migration
     {
         Schema::create('campaigns', function (Blueprint $table) {
             $table->id();
-            $table->string('code', 10)->index()->unique();
+            $table->string('code', Campaign::$MAX_CODE_LENGTH)->index()->unique();
             $table->timestamp('start_time')->nullable()->comment('Campaign start time');
 
             $table->timestamp('end_time')
