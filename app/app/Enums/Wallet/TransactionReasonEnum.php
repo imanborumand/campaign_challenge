@@ -10,7 +10,7 @@ namespace App\Enums\Wallet;
 enum TransactionReasonEnum : string
 {
 
-    case  GET_GIFT_CODE = 'GET_GIFT_CODE';
+    case  FROM_CAMPAIGN = 'FROM_CAMPAIGN';
 
 
     case WITHDRAW = 'WITHDRAW';

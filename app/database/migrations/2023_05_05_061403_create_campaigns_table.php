@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('gift_cards', function (Blueprint $table) {
+        Schema::create('campaigns', function (Blueprint $table) {
             $table->id();
             $table->string('code', 10)->index()->unique();
             $table->timestamp('start_time')->nullable()->comment('Campaign start time');
@@ -23,7 +23,7 @@ return new class extends Migration
 
             $table->integer('usable_number')
                   ->default(100)
-                  ->comment('The usable number of the desired gift card');
+                  ->comment('The usable number of the desired campaign code');
 
             $table->timestamps();
         });
@@ -34,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('gift_cards');
+        Schema::dropIfExists('campaigns');
     }
 };

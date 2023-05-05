@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Resources\Admin\Gift;
+namespace App\Http\Resources\Admin\Campaign;
 
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class GiftResource extends JsonResource
+class CampaignResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -18,7 +18,7 @@ class GiftResource extends JsonResource
         return [
             'start_time' => Carbon::createFromFormat('Y-m-d H:i', $this->start_time)
             ->format("Y-m-d H:i:s"),
-            
+
             'end_time' => $this->end_time->format('Y-m-d H:i:s'),
             'code' => $this->code,
             'id' => $this->id,

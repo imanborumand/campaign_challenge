@@ -1,13 +1,13 @@
 <?php
 
 
-use App\Http\Controllers\Admin\Gift\AdminGiftCardController;
+use App\Http\Controllers\Admin\Campaign\AdminCampaignController;
 use Illuminate\Support\Facades\Route;
 
 
 
-Route::prefix( 'gift-cards')
-     ->controller( AdminGiftCardController::class)
+Route::prefix( 'campaigns')
+     ->controller( AdminCampaignController::class)
      ->group(function () {
 
          Route::post('store', 'store');

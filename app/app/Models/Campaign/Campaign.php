@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Models\Gift;
+namespace App\Models\Campaign;
 
 use Illuminate\Database\Eloquent\Model;
 
-class GiftCard extends Model
+class Campaign extends Model
 {
 
-    protected $table  = 'gift_cards';
+    protected $table  = 'campaigns';
 
     protected $fillable = [
         //| id               | bigint unsigned | NO   | PRI | NULL    | auto_increment |

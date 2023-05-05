@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Requests\Admin\Gift;
+namespace App\Http\Requests\Admin\Campaign;
 
 use App\Http\Requests\FormRequestBase;
 use Carbon\Carbon;
 use Illuminate\Contracts\Validation\Validator;
 
 
-class AdminStoreGiftRequest extends FormRequestBase
+class AdminStoreCampaignRequest extends FormRequestBase
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,7 +25,7 @@ class AdminStoreGiftRequest extends FormRequestBase
     public function rules(): array
     {
         return [
-            'code' => 'required|unique:gift_cards,code|max:5',
+            'code' => 'required|unique:campaigns,code|max:5',
             'start_time' => 'required|date_format:Y-m-d H:i|after:now',
             'end_time' => 'required|after:now',
             'usable_number' => 'required|numeric|min:1',
