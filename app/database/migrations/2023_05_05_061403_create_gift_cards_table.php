@@ -21,7 +21,10 @@ return new class extends Migration
                   ->comment('Campaign end time,
                   equal to the start time + the time limit set by the administrator (for example, one hour)');
 
-            $table->integer('use_limit')->default(100);
+            $table->integer('usable_number')
+                  ->default(100)
+                  ->comment('The usable number of the desired gift card');
+
             $table->timestamps();
         });
     }
