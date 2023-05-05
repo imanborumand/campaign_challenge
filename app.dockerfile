@@ -12,6 +12,7 @@ USER root
 RUN pecl install mongodb
 RUN pecl install  -o -f  redis
 
+
 RUN apt-get update && apt-get install -y \
     zlib1g-dev \
     libzip-dev \
@@ -28,7 +29,11 @@ RUN apt-get update && apt-get install -y \
     && echo "extension=redis.so" > /usr/local/etc/php/conf.d/redis.ini\
     && echo "extension=mongodb.so" >> /usr/local/etc/php/conf.d/mongodb.ini
 
-RUN #apt-get install -y libpq-dev && docker-php-ext-install pdo pdo_pgsql
+
+RUN mkdir -p /usr/src/php/ext/redis \
+    && curl -L https://github.com/phpredis/phpredis/archive/5.3.4.tar.gz | tar xvz -C /usr/src/php/ext/redis --strip 1 \
+    && echo 'redis' >> /usr/src/php-available-exts \
+    && docker-php-ext-install redis
 
 # Add user for laravel application
 RUN groupadd -g 1000 www

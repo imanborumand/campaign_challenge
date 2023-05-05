@@ -62,8 +62,20 @@ services:
       - challenge-network
 
 
+  challenge-redis:
+    image: redis:7.0
+    container_name: challenge-redis
+    restart: always
+    volumes:
+      - cache:/data
+    networks:
+      - challenge-network
+
+
 volumes:
   challenge_mysql:
+    driver: local
+  cache:
     driver: local
 
 

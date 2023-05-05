@@ -4,11 +4,11 @@ namespace App\Http\Controllers\Api\Campaign;
 
 use App\Http\Requests\Api\Campaign\ParticipationToCampaignRequest;
 use App\Http\Controllers\Controller;
+use App\Jobs\Campaign\UserParticipationToCampaignJob;
 use App\Services\Api\Campaign\CampaignService;
 
 
-class ApiCampaignController
-    extends Controller
+class ApiCampaignController extends Controller
 {
 
     public function __construct(CampaignService $service)
@@ -19,7 +19,8 @@ class ApiCampaignController
 
     public function participationToCampaign(ParticipationToCampaignRequest $request)
     {
-        dd($request->validated());
+       //todo add job for add use to campaign
+
     }
 
 }
