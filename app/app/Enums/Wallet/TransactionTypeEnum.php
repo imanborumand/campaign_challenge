@@ -1,6 +1,6 @@
 <?php
 
-namespace App\app\Enums\Wallet;
+namespace App\Enums\Wallet;
 
 enum TransactionTypeEnum : string
 {

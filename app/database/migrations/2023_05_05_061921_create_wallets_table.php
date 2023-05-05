@@ -1,7 +1,8 @@
 <?php
 
-use App\app\Enums\Wallet\TransactionReasonEnum;
-use App\app\Enums\Wallet\TransactionTypeEnum;
+use App\Enums\Wallet\TransactionReasonEnum;
+
+use App\Enums\Wallet\TransactionTypeEnum;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
