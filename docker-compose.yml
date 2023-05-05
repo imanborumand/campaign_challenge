@@ -1,0 +1,71 @@
+version: '2'
+services:
+
+  #PHP Service
+  challenge-app:
+    build:
+      context: .
+      dockerfile: app.dockerfile
+    container_name: challenge-app
+    tty: true
+    environment:
+      SERVICE_NAME: challenge-app
+      SERVICE_TAGS: dev
+    working_dir: /var/www/server
+    env_file: './app/.env.local'
+    volumes:
+      - ./app:/var/www/server
+      - ./php/local.ini:/usr/local/etc/php/conf.d/local.ini
+    networks:
+      - challenge-network
+    depends_on:
+      - challenge-mysql
+    command: /bin/bash -c "php-fpm | /usr/bin/supervisord -n -c /etc/supervisor/supervisord.conf"
+
+
+  #Nginx Service
+  challenge-webserver:
+    build:
+      context: ./
+      dockerfile: webserver.dockerfile
+    container_name: challenge-webserver
+    tty: true
+    ports:
+      - "8085:80"
+    volumes:
+      - ./app:/var/www/server
+    depends_on:
+      - challenge-app
+    networks:
+      - challenge-network
+
+
+
+  #MySQL Service
+  challenge-mysql:
+    image: mysql:8.0
+    container_name: challenge-mysql
+    restart: always
+    tty: true
+    environment:
+      MYSQL_DATABASE: challenge
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_PASSWORD: secret
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    volumes:
+      - challenge_mysql:/var/lib/mysql/
+      - ./mysql:/etc/mysql/conf.d/my.cnf
+    networks:
+      - challenge-network
+
+
+volumes:
+  challenge_mysql:
+    driver: local
+
+
+networks:
+  challenge-network:
+    driver: bridge
+
