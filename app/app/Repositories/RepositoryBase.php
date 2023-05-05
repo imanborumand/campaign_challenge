@@ -2,7 +2,8 @@
 
 namespace App\Repositories;
 
-use App\Exceptions\StoreModelException;
+
+use App\Exceptions\CustomStoreModelException;
 use Illuminate\Database\Eloquent\Model;
 
 class RepositoryBase
@@ -14,7 +15,7 @@ class RepositoryBase
     /**
      * @param array $params
      * @return Model
-     * @throws StoreModelException
+     * @throws CustomStoreModelException
      */
     public function store( array $params) : Model
     {
@@ -22,6 +23,6 @@ class RepositoryBase
        if($model) {
            return $model;
        }
-        throw new StoreModelException();
+        throw new CustomStoreModelException();
     }
 }

@@ -2,10 +2,12 @@
 
 namespace App\Http\Requests\Admin\Gift;
 
+use App\Http\Requests\FormRequestBase;
 use Carbon\Carbon;
-use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Contracts\Validation\Validator;
 
-class AdminStoreGiftRequest extends FormRequest
+
+class AdminStoreGiftRequest extends FormRequestBase
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -47,4 +49,7 @@ class AdminStoreGiftRequest extends FormRequest
 
         return $request->toArray();
     }
+
+
+
 }

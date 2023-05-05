@@ -1,6 +1,6 @@
 <?php
 
-namespace App\app\Exceptions\Enums\Wallet;
+namespace App\Enums\Wallet;
 
 /**
  * We use this class to better display

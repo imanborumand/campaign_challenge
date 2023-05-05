@@ -5,7 +5,7 @@ namespace App\Exceptions;
 use App\Concerns\ApiResponseTrait;
 use Exception;
 
-class StoreModelException extends Exception
+class CustomStoreModelException extends Exception
 {
     use ApiResponseTrait;
 

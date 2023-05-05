@@ -1,4 +1,5 @@
 {
     "store model error": "Error When Create Model, Try again!",
-    "success response": "Your request successfully handled!"
+    "success response": "Your request successfully handled!",
+    "validation error": "Validation error, Please check your request"
 }

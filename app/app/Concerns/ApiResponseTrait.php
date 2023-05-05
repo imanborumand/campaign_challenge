@@ -34,25 +34,44 @@ trait ApiResponseTrait
         return $this;
     }
 
-    public function setErrors(array $array) : static
+
+    /**
+     * @param array $array
+     * @return $this
+     */
+    public function setErrors( array $array) : static
     {
-        $this->errors = $array;
+        $this->errors = array_values($array);
         return $this;
     }
 
 
-    public function errorResponse(string $message = 'error') : static
+    /**
+     * @param string $message
+     * @return $this
+     */
+    public function errorResponse( string $message = 'error') : static
     {
         $this->responseMessage = $message;
         return $this;
     }
 
-    public function successResponse(string $message = 'success response') : static
+
+    /**
+     * @param string $message
+     * @return $this
+     */
+    public function successResponse( string $message = 'success response') : static
     {
         $this->responseMessage = $message;
         return $this;
     }
 
+
+    /**
+     * @param int $httpCode
+     * @return $this
+     */
     public function setHttpCode( int $httpCode ) : static
     {
         $this->httpCode = $httpCode;
