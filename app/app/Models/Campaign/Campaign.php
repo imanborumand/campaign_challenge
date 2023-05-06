@@ -4,6 +4,7 @@ namespace App\Models\Campaign;
 
 use App\Models\User\User;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Campaign extends Model
@@ -35,8 +36,9 @@ class Campaign extends Model
 
 
 
-    public function users()
+    public function users() : BelongsToMany
     {
-       return $this->belongsToMany(User::class);
+       return $this->belongsToMany(User::class)
+                   ->orderBy('campaign_user.id', 'asc'); //show user by rate and participation in campaign
     }
 }

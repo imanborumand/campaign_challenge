@@ -16,19 +16,19 @@ class UserService extends ServiceBase
     }
 
 
-    /**
-     * get user by mobile number
-     * @param string $mobile
-     * @return User
-     * @throws CustomNotfoundException
-     */
-    public function getByMobileNumber( string $mobile) : User
+	/**
+	 * get user by mobile number
+	 *
+	 * @param string $mobile
+	 * @return User|null
+	 */
+    public function getByMobileNumber( string $mobile) : ?User
     {
         $user = $this->repository->getUserByMobileNumber($mobile);
         if ($user) {
             return $user;
         }
-        throw new CustomNotfoundException();
+        return null;
     }
 
 

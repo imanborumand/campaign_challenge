@@ -6,6 +6,7 @@ use App\Exceptions\CustomNotfoundException;
 use App\Models\Campaign\Campaign;
 
 use App\Repositories\RepositoryBase;
+use Illuminate\Database\Eloquent\Collection;
 
 class CampaignRepository extends RepositoryBase
 {
@@ -57,9 +58,35 @@ class CampaignRepository extends RepositoryBase
     {
         $campaign = $this->model->where('id', $id)->first();
         if($campaign) {
-            return $campaign->users()->sync($params);
+            return $campaign->users()->attach($params);
         }
         return null;
+    }
+
+
+    /**
+     * @param string $code
+     * @return Campaign|null
+     */
+    public function getWithUsers( string $code) : ?Campaign
+    {
+        return $this->model
+            ->where('code', $code)
+            ->with('users')
+            ->first();
+    }
+
+
+    /**
+     * @param string $code
+     * @return Campaign|null
+     */
+    public function getCountOfParticipation( string $code) : ?Campaign
+    {
+        return $this->model
+            ->where('code', $code)
+            ->withCount('users')
+            ->first();
     }
 
 }
