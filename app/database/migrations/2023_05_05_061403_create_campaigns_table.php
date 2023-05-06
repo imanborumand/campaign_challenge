@@ -26,6 +26,10 @@ return new class extends Migration
                   ->default(100)
                   ->comment('The usable number of the desired campaign code');
 
+            $table->integer('used_number')
+                ->default(0)
+                ->comment('Number of campaign code used');
+
             $table->timestamps();
         });
     }

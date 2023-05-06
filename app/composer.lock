@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6a77229974aee7110d16b94db07815e2",
+    "content-hash": "050a7fe996846ddfb9bdbe7d5535d585",
     "packages": [
         {
             "name": "brick/math",
@@ -60,6 +60,51 @@
                 }
             ],
             "time": "2023-01-15T23:15:59+00:00"
+        },
+        {
+            "name": "caneara/triggers",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/caneara/triggers.git",
+                "reference": "87ca303f766790f619663eb0be2ae29ddf1d7cad"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/caneara/triggers/zipball/87ca303f766790f619663eb0be2ae29ddf1d7cad",
+                "reference": "87ca303f766790f619663eb0be2ae29ddf1d7cad",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^6.0",
+                "phpunit/phpunit": "^9.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Triggers\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A package to add database trigger support to Laravel",
+            "homepage": "https://github.com/mattkingshott/triggers",
+            "keywords": [
+                "database",
+                "laravel",
+                "php",
+                "triggers"
+            ],
+            "support": {
+                "issues": "https://github.com/caneara/triggers/issues",
+                "source": "https://github.com/caneara/triggers/tree/v1.0.1"
+            },
+            "time": "2022-09-20T07:05:30+00:00"
         },
         {
             "name": "dflydev/dot-access-data",

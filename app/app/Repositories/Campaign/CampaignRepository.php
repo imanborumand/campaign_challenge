@@ -32,4 +32,34 @@ class CampaignRepository extends RepositoryBase
     }
 
 
+    /**
+     * check and get campaign by userId and campaign code
+     * if user not participation on campaign return null
+     * @param string $code
+     * @param int    $userId
+     * @return Campaign|null
+     */
+    public function checkUserParticipationOnCampaign( string $code, int $userId) : ? Campaign
+    {
+        return $this->model->where('code', $code)
+            ->whereHas('users', function($query) use ($userId) {
+                $query->where('user_id', $userId);
+            })->first();
+    }
+
+
+    /**
+     * @param int   $id
+     * @param array $params
+     * @return array|null
+     */
+    public function syncNewUser( int $id, array $params) : ?array
+    {
+        $campaign = $this->model->where('id', $id)->first();
+        if($campaign) {
+            return $campaign->users()->sync($params);
+        }
+        return null;
+    }
+
 }

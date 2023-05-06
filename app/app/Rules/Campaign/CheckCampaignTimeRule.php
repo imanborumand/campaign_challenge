@@ -29,12 +29,11 @@ class CheckCampaignTimeRule implements ValidationRule
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-//        240441669211
         //Add to the cache to receive from the cache and not send a query to the database
         $campaignCache = Cache::get($value, function() use ($value) {
 
             $campaign = app(CampaignService::class)->getByCode($value);
-            Cache::put($value, $campaign, $campaign->end_date);
+            Cache::put($value, $campaign, $campaign->end_time);
 
             return $campaign;
         });
@@ -42,7 +41,10 @@ class CheckCampaignTimeRule implements ValidationRule
 
         //If the request time is not between the start and end time of the campaign,
         // a CustomCampaignTimeException will be issued
-        if (!Carbon::now()->between($campaignCache->start_time, $campaignCache->end_time)) {
+        if (
+            !Carbon::now()->between($campaignCache->start_time, $campaignCache->end_time) ||
+            $campaignCache->used_number == $campaignCache->usable_number
+        ) {
             throw new CustomCampaignTimeException();
         }
     }

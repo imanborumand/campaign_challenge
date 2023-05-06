@@ -3,10 +3,13 @@
 namespace App\Services\Api\Campaign;
 
 
+use App\Exceptions\CustomNotfoundException;
 use App\Jobs\Campaign\UserParticipationToCampaignJob;
 use App\Models\Campaign\Campaign;
+use App\Models\User\User;
 use App\Repositories\Campaign\CampaignRepository;
 use App\Services\ServiceBase;
+use Illuminate\Support\Facades\DB;
 
 class CampaignService extends ServiceBase
 {
@@ -17,20 +20,51 @@ class CampaignService extends ServiceBase
     }
 
 
-
-    public function participationToCampaign(array $params)
+    /**
+     * @param array $params
+     * @return array
+     */
+    public function participationToCampaign( array $params) : array
     {
         dispatch(new UserParticipationToCampaignJob($params['mobile'], $params['code']));
 
-        return true;
+        return [];
     }
 
 
-    public function getByCode(string $code) : Campaign
+    /**
+     * check user participation on selected camp!
+     * @param string $code
+     * @param int    $userId
+     * @return Campaign|null
+     */
+    public function checkUserParticipation( string $code, int $userId) : ?Campaign
+    {
+        return $this->repository->checkUserParticipationOnCampaign($code, $userId);
+    }
+
+
+    /**
+     * get campaign by code
+     * @param string $code
+     * @return Campaign
+     * @throws CustomNotfoundException
+     */
+    public function getByCode( string $code) : Campaign
     {
         return $this->repository->getByCode($code);
     }
 
+
+    /**
+     * @param int   $id
+     * @param array $params
+     * @return false
+     */
+    public function syncNewUser( int $id, array $params)
+    {
+        return $this->repository->syncNewUser($id, $params);
+    }
 
 
 }

@@ -227,6 +227,7 @@
       <path value="$PROJECT_DIR$/app/vendor/psr/container" />
       <path value="$PROJECT_DIR$/app/vendor/psr/http-client" />
       <path value="$PROJECT_DIR$/app/vendor/predis/predis" />
+      <path value="$PROJECT_DIR$/app/vendor/caneara/triggers" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.1" />

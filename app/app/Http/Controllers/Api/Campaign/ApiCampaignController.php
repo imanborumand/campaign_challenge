@@ -6,6 +6,7 @@ use App\Http\Requests\Api\Campaign\ParticipationToCampaignRequest;
 use App\Http\Controllers\Controller;
 use App\Jobs\Campaign\UserParticipationToCampaignJob;
 use App\Services\Api\Campaign\CampaignService;
+use Illuminate\Http\JsonResponse;
 
 
 class ApiCampaignController extends Controller
@@ -17,7 +18,11 @@ class ApiCampaignController extends Controller
     }
 
 
-    public function participationToCampaign(ParticipationToCampaignRequest $request)
+    /**
+     * @param ParticipationToCampaignRequest $request
+     * @return JsonResponse
+     */
+    public function participationToCampaign(ParticipationToCampaignRequest $request) : JsonResponse
     {
        return $this->successResponse(__('participation campaign message'))
            ->setResult(

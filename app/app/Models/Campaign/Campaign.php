@@ -2,7 +2,9 @@
 
 namespace App\Models\Campaign;
 
+use App\Models\User\User;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Campaign extends Model
 {
@@ -25,9 +27,16 @@ class Campaign extends Model
          'code',           //| varchar(10)     | NO   | MUL | NULL    |                |
          'start_time',     //| timestamp       | YES  |     | NULL    |                |
          'end_time',       //| timestamp       | YES  |     | NULL    |                |
-         'usable_number'   //| int             | NO   |     | 100     |                |
+         'usable_number',  //| int             | NO   |     | 100     |                |
+         'used_number'     //| int             | NO   |     | 100     |                |
         //| created_at       | timestamp       | YES  |     | NULL    |                |
         //| updated_at       | timestamp       | YES  |     | NULL    |                |
     ];
 
+
+
+    public function users()
+    {
+       return $this->belongsToMany(User::class);
+    }
 }
