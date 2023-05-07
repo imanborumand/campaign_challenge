@@ -16,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->string('code', Campaign::$MAX_CODE_LENGTH)->index()->unique();
             $table->decimal('amount', 10);
-            $table->timestamp('start_time')->nullable()->comment('Campaign start time');
+            $table->timestamp('start_time')->comment('Campaign start time');
 
             $table->timestamp('end_time')
                   ->nullable()
