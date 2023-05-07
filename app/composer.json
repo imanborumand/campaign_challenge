@@ -50,7 +50,7 @@
             "chmod -R 777 public/",
             "php artisan storage:link"
         ],
-        "post-install-cmd": [
+        "per-install-cmd": [
             "chmod -R 777 storage",
             "chmod -R 777 public/",
             "php artisan storage:link"
