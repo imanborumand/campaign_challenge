@@ -49,3 +49,9 @@ Now Project is running!
 
 For see the project home page open http://localhost:8085
 
+---
+#### postman collection
+``` 
+https://documenter.getpostman.com/view/2528321/2s93eWzsbc
+```
+
