@@ -1,0 +1,739 @@
+{
+	"info": {
+		"_postman_id": "be72038c-2576-4aa3-97c3-4cb0946bcdd4",
+		"name": "challenge",
+		"description": "Advertising campaign challenge\n\n---\n\nnote: all header request of this collection must include application/json value.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2528321"
+	},
+	"item": [
+		{
+			"name": "admin",
+			"item": [
+				{
+					"name": "campaign",
+					"item": [
+						{
+							"name": "store campaign",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"start_time\": \"2023-05-07 20:00\",\n    \"usable_number\": 100,\n    \"usable_time\": 60,\n    \"code\": \"iman1\",\n    \"amount\": \"10000000\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localhost}}/api/admin/campaigns/store",
+									"host": [
+										"{{localhost}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"campaigns",
+										"store"
+									]
+								},
+								"description": "you can create many campaigns at different times, numbers and amounts.\n\n---\n\n**Required parameters:**\n\n_start_time_: start time of a campaign  \n_usable_time_: time of each campaign, this time + start_time = end time  \n_usable_number_: allowed number of users in each campaign  \n_code_: campaign gift code  \n_amount_: gift amount of each campaign"
+							},
+							"response": [
+								{
+									"name": "success",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"start_time\": \"2023-05-07 20:00\",\n    \"usable_number\": 100,\n    \"usable_time\": 300,\n    \"code\": \"iman1\",\n    \"amount\": \"10000000\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://0.0.0.0:8085/api/admin/campaigns/store",
+											"protocol": "http",
+											"host": [
+												"0",
+												"0",
+												"0",
+												"0"
+											],
+											"port": "8085",
+											"path": [
+												"api",
+												"admin",
+												"campaigns",
+												"store"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Server",
+											"value": "nginx/1.23.2"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.1.12"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 07 May 2023 06:07:11 GMT"
+										},
+										{
+											"key": "X-RateLimit-Limit",
+											"value": "60"
+										},
+										{
+											"key": "X-RateLimit-Remaining",
+											"value": "58"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"success response\",\n    \"result\": {\n        \"start_time\": \"2023-05-07 20:00:00\",\n        \"end_time\": \"2023-05-08 01:00:00\",\n        \"code\": \"iman1\",\n        \"id\": 1,\n        \"usable_number\": 100,\n        \"amount\": 10000000\n    },\n    \"errors\": []\n}"
+								},
+								{
+									"name": "code taken error",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"start_time\": \"2023-05-07 20:00\",\n    \"usable_number\": 100,\n    \"usable_time\": 300,\n    \"code\": \"iman1\",\n    \"amount\": \"10000000\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{localhost}}/api/admin/campaigns/store",
+											"host": [
+												"{{localhost}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"campaigns",
+												"store"
+											]
+										}
+									},
+									"status": "Unprocessable Content",
+									"code": 422,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Server",
+											"value": "nginx/1.23.2"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.1.12"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 07 May 2023 06:07:43 GMT"
+										},
+										{
+											"key": "X-RateLimit-Limit",
+											"value": "60"
+										},
+										{
+											"key": "X-RateLimit-Remaining",
+											"value": "57"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Validation error, Please check your request\",\n    \"result\": [],\n    \"errors\": [\n        [\n            \"The code has already been taken.\"\n        ]\n    ]\n}"
+								},
+								{
+									"name": "error validation",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"start_time\": \"2023-05-07 20:00\",\n    \"usable_number\": 100,\n    \"code\": \"iman1\",\n    \"amount\": \"10000000\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{localhost}}/api/admin/campaigns/store",
+											"host": [
+												"{{localhost}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"campaigns",
+												"store"
+											]
+										}
+									},
+									"status": "Unprocessable Content",
+									"code": 422,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Server",
+											"value": "nginx/1.23.2"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.1.12"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 07 May 2023 06:08:13 GMT"
+										},
+										{
+											"key": "X-RateLimit-Limit",
+											"value": "60"
+										},
+										{
+											"key": "X-RateLimit-Remaining",
+											"value": "59"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Validation error, Please check your request\",\n    \"result\": [],\n    \"errors\": [\n        [\n            \"The code has already been taken.\"\n        ],\n        [\n            \"The usable time field is required.\"\n        ]\n    ]\n}"
+								}
+							]
+						},
+						{
+							"name": "participation list",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{localhost}}/api/admin/campaigns/users/participation/{code}",
+									"host": [
+										"{{localhost}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"campaigns",
+										"users",
+										"participation",
+										"{code}"
+									]
+								},
+								"description": "Using this API, you can view the list of users based on participation in the campaign."
+							},
+							"response": [
+								{
+									"name": "participation list not empty",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "http://0.0.0.0:8085/api/admin/campaigns/users/participation/iman1",
+											"protocol": "http",
+											"host": [
+												"0",
+												"0",
+												"0",
+												"0"
+											],
+											"port": "8085",
+											"path": [
+												"api",
+												"admin",
+												"campaigns",
+												"users",
+												"participation",
+												"iman1"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Server",
+											"value": "nginx/1.23.2"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.1.12"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 07 May 2023 06:46:35 GMT"
+										},
+										{
+											"key": "X-RateLimit-Limit",
+											"value": "60"
+										},
+										{
+											"key": "X-RateLimit-Remaining",
+											"value": "58"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"success response\",\n    \"result\": [\n        {\n            \"id\": 1,\n            \"code\": \"09120139717\"\n        },\n        {\n            \"id\": 2,\n            \"code\": \"09120139712\"\n        },\n        {\n            \"id\": 3,\n            \"code\": \"09120139713\"\n        }\n    ],\n    \"errors\": []\n}"
+								}
+							]
+						}
+					],
+					"description": "APIs related to storing and viewing gift cards"
+				}
+			],
+			"description": "Management APIs"
+		},
+		{
+			"name": "Api",
+			"item": [
+				{
+					"name": "Campaign",
+					"item": [
+						{
+							"name": "participate in campaign",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"mobile\": \"09120139713\",\n    \"code\": \"iman1\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localhost}}/api/v1/campaigns/participation",
+									"host": [
+										"{{localhost}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"campaigns",
+										"participation"
+									]
+								},
+								"description": "Participating in a campaign, using this API users can participate in the selected campaign.\n\n---\n\n  \n**Parameters:**  \n_mobile_: user's mobile number  \n_code_: the gift code of the desired campaign"
+							},
+							"response": [
+								{
+									"name": "user participate in tcampaign",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"mobile\": \"09120139713\",\n    \"code\": \"iman1\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://0.0.0.0:8085/api/v1/campaigns/participation",
+											"protocol": "http",
+											"host": [
+												"0",
+												"0",
+												"0",
+												"0"
+											],
+											"port": "8085",
+											"path": [
+												"api",
+												"v1",
+												"campaigns",
+												"participation"
+											]
+										}
+									},
+									"status": "Accepted",
+									"code": 202,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Server",
+											"value": "nginx/1.23.2"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.1.12"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 07 May 2023 06:17:09 GMT"
+										},
+										{
+											"key": "X-RateLimit-Limit",
+											"value": "60"
+										},
+										{
+											"key": "X-RateLimit-Remaining",
+											"value": "58"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"We have received your request and queued it for processing. You can return to your panel after the end of the campaign and check the result.\",\n    \"result\": [],\n    \"errors\": []\n}"
+								},
+								{
+									"name": "participation error",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"mobile\": \"09120139713\",\n    \"code\": \"iman1\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{localhost}}/api/v1/campaigns/participation",
+											"host": [
+												"{{localhost}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"campaigns",
+												"participation"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Server",
+											"value": "nginx/1.23.2"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.1.12"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 07 May 2023 06:44:58 GMT"
+										},
+										{
+											"key": "X-RateLimit-Limit",
+											"value": "60"
+										},
+										{
+											"key": "X-RateLimit-Remaining",
+											"value": "58"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"This campaign is not available now. Please pay attention to the start and end time of the campaign!\",\n    \"result\": [],\n    \"errors\": []\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Wallet",
+					"item": [
+						{
+							"name": "Balance",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{localhost}}/api/v1/users/wallet/balance/09120139712",
+									"host": [
+										"{{localhost}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"users",
+										"wallet",
+										"balance",
+										"09120139712"
+									]
+								},
+								"description": "View the balance of the user's wallet using the mobile number"
+							},
+							"response": [
+								{
+									"name": "success",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://0.0.0.0:8085/api/v1/users/wallet/balance/09120139712",
+											"protocol": "http",
+											"host": [
+												"0",
+												"0",
+												"0",
+												"0"
+											],
+											"port": "8085",
+											"path": [
+												"api",
+												"v1",
+												"users",
+												"wallet",
+												"balance",
+												"09120139712"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Server",
+											"value": "nginx/1.23.2"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.1.12"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 07 May 2023 06:44:06 GMT"
+										},
+										{
+											"key": "X-RateLimit-Limit",
+											"value": "60"
+										},
+										{
+											"key": "X-RateLimit-Remaining",
+											"value": "56"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"success response\",\n    \"result\": {\n        \"balance\": 9939800\n    },\n    \"errors\": []\n}"
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	]
+}
