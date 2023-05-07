@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\Campaign\ApiCampaignController;
+use App\Http\Controllers\Api\Wallet\WalletController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,5 +21,19 @@ Route::prefix( 'campaigns')
 
          Route::post('participation', 'participationToCampaign');
 
-     });
+});
 
+
+Route::prefix( 'users')
+     ->group(function () {
+
+
+
+         Route::prefix( 'wallet')
+             ->controller( WalletController::class)
+              ->group(function () {
+
+                  Route::get('balance/{mobile}', 'balance');
+         });
+
+});

@@ -19,6 +19,7 @@ class CampaignRepository extends RepositoryBase
 
 
     /**
+     * get campaign by `code`
      * @param string $code
      * @return Campaign
      * @throws CustomNotfoundException
@@ -50,11 +51,12 @@ class CampaignRepository extends RepositoryBase
 
 
     /**
+     *  attach user and add to selected campaign
      * @param int   $id
      * @param array $params
      * @return array|null
      */
-    public function syncNewUser( int $id, array $params) : ?array
+    public function attachNewUser( int $id, array $params) : ?array
     {
         $campaign = $this->model->where('id', $id)->first();
         if($campaign) {
@@ -65,6 +67,7 @@ class CampaignRepository extends RepositoryBase
 
 
     /**
+     * get campaign with user relation
      * @param string $code
      * @return Campaign|null
      */
@@ -78,6 +81,7 @@ class CampaignRepository extends RepositoryBase
 
 
     /**
+     * get campaign with count of user that used it
      * @param string $code
      * @return Campaign|null
      */

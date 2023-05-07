@@ -2,19 +2,23 @@
 
 namespace App\Jobs\Campaign;
 
+use App\Enums\Wallet\TransactionReasonEnum;
+use App\Enums\Wallet\TransactionTypeEnum;
 use App\Exceptions\CustomNotfoundException;
 use App\Exceptions\CustomStoreModelException;
 use App\Models\Campaign\Campaign;
 use App\Models\User\User;
 use App\Services\Api\Campaign\CampaignService;
 use App\Services\Api\User\UserService;
+use App\Services\Api\Wallet\WalletService;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Cache;
-
+use Illuminate\Support\Facades\DB;
+use Mockery\Exception;
 
 
 class UserParticipationToCampaignJob implements ShouldQueue
@@ -53,16 +57,30 @@ class UserParticipationToCampaignJob implements ShouldQueue
             return;
         }
 
-        $this->getUser(); //get user
+        DB::beginTransaction();
+        try {
 
-        //if this function return result, user participation on this campaign
-        //if return has value, it means that the user has participated in the campaign
-        if ($this->campaignService->checkUserParticipation($this->code, $this->user->id)) {
-           return;
+            $this->getUser(); //get user
+
+            //if this function return result, user participation on this campaign
+            //if return has value, it means that the user has participated in the campaign
+            if ($this->campaignService->checkUserParticipation($this->code, $this->user->id)) {
+                return;
+            }
+
+            //sync user and add to current campaign
+            $this->campaignService->attachNewUser($this->campaign->id, ['user_id' => $this->user->id]);
+
+            //add campaign amount to wallet
+            $this->addCampaignAmountToWallet();
+            DB::commit();
+
+        } catch (Exception) {
+            DB::rollBack();
+            //retry job
         }
 
-        //sync user and add to current campaign
-        $this->campaignService->syncNewUser($this->campaign->id, ['user_id' => $this->user->id]);
+
     }
 
 
@@ -82,7 +100,6 @@ class UserParticipationToCampaignJob implements ShouldQueue
 
     /**
      * @return void
-     * @throws CustomNotfoundException
      * @throws CustomStoreModelException
      */
     private function getUser() : void
@@ -91,5 +108,20 @@ class UserParticipationToCampaignJob implements ShouldQueue
         if (!$this->user) {
             $this->user = $this->userService->store(['mobile' => $this->mobile]);
         }
+    }
+
+
+    /**
+     * @return void
+     */
+    private function addCampaignAmountToWallet() : void
+    {
+        app(WalletService::class)
+            ->store([
+                'user_id' => $this->user->id,
+                'amount' => $this->campaign->amount,
+                'type' => TransactionTypeEnum::INCREASE->value,
+                'reason' => TransactionReasonEnum::FROM_CAMPAIGN->value
+        ]);
     }
 }

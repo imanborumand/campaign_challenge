@@ -15,6 +15,7 @@ return new class extends Migration
         Schema::create('campaigns', function (Blueprint $table) {
             $table->id();
             $table->string('code', Campaign::$MAX_CODE_LENGTH)->index()->unique();
+            $table->decimal('amount', 10);
             $table->timestamp('start_time')->nullable()->comment('Campaign start time');
 
             $table->timestamp('end_time')

@@ -22,7 +22,8 @@ class CampaignResource extends JsonResource
             'end_time' => $this->end_time->format('Y-m-d H:i:s'),
             'code' => $this->code,
             'id' => $this->id,
-            'usable_number' => $this->usable_number
+            'usable_number' => $this->usable_number,
+            'amount' => (float) $this->amount
         ];
     }
 }

@@ -59,11 +59,11 @@ class CampaignService extends ServiceBase
     /**
      * @param int   $id
      * @param array $params
-     * @return false
+     * @return array|null
      */
-    public function syncNewUser( int $id, array $params)
+    public function attachNewUser( int $id, array $params) : ?array
     {
-        return $this->repository->syncNewUser($id, $params);
+        return $this->repository->attachNewUser($id, $params);
     }
 
 

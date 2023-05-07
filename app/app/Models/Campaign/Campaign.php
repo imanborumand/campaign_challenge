@@ -26,6 +26,7 @@ class Campaign extends Model
     protected  $fillable  = [
         //| id               | bigint unsigned | NO   | PRI | NULL    | auto_increment |
          'code',           //| varchar(10)     | NO   | MUL | NULL    |                |
+         'amount',         //| varchar(10)     | NO   | MUL | NULL    |                |
          'start_time',     //| timestamp       | YES  |     | NULL    |                |
          'end_time',       //| timestamp       | YES  |     | NULL    |                |
          'usable_number',  //| int             | NO   |     | 100     |                |

@@ -27,6 +27,7 @@ class AdminStoreCampaignRequest extends FormRequestBase
     {
         return [
             'code' => 'required|unique:campaigns,code|max:' . Campaign::$MAX_CODE_LENGTH,
+            'amount' => 'required|numeric',
             'start_time' => 'required|date_format:Y-m-d H:i|after:now',
             'end_time' => 'required|after:now',
             'usable_number' => 'required|numeric|min:1',

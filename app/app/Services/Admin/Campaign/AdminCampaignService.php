@@ -20,6 +20,7 @@ class AdminCampaignService extends ServiceBase
 
 
     /**
+     * store new campaign
      * @param array $params
      * @return Model
      * @throws CustomStoreModelException
@@ -31,6 +32,7 @@ class AdminCampaignService extends ServiceBase
 
 
     /**
+     * return list of user that use in selected campaign
      * @param string $code
      * @return bool|Campaign
      */
