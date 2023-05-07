@@ -24,15 +24,16 @@ class Campaign extends Model
 
 
     protected  $fillable  = [
-        //| id               | bigint unsigned | NO   | PRI | NULL    | auto_increment |
-         'code',           //| varchar(10)     | NO   | MUL | NULL    |                |
-         'amount',         //| varchar(10)     | NO   | MUL | NULL    |                |
-         'start_time',     //| timestamp       | YES  |     | NULL    |                |
-         'end_time',       //| timestamp       | YES  |     | NULL    |                |
-         'usable_number',  //| int             | NO   |     | 100     |                |
-         'used_number'     //| int             | NO   |     | 100     |                |
-        //| created_at       | timestamp       | YES  |     | NULL    |                |
-        //| updated_at       | timestamp       | YES  |     | NULL    |                |
+        //| id             | bigint unsigned | NO   | PRI | NULL    | auto_increment |
+        'code',          //| varchar(5)      | NO   | UNI | NULL    |                |
+        'amount',        //| decimal(10,2)   | NO   |     | NULL    |                |
+        'start_time',    //| timestamp       | YES  |     | NULL    |                |
+        'end_time',      //| timestamp       | YES  |     | NULL    |                |
+        'usable_number', //| int             | NO   |     | 100     |                |
+        'used_number',   //| int             | NO   |     | 0       |                |
+        //| created_at     | timestamp       | YES  |     | NULL    |                |
+        //| updated_at     | timestamp       | YES  |     | NULL    |                |
+
     ];
 
 
