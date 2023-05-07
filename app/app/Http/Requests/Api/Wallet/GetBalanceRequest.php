@@ -31,5 +31,16 @@ class GetBalanceRequest extends FormRequestBase
     }
 
 
+    /**
+     * @param $keys
+     * @return array
+     */
+    public function all( $keys = null ) : array
+    {
+        $request = request();
+        $request['mobile'] = $request->mobile;
+        return $request->toArray();
+    }
+
 
 }

@@ -2,7 +2,9 @@
 
 namespace App\Models\Wallet;
 
+use App\Enums\Wallet\TransactionTypeEnum;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Wallet extends Model
 {
