@@ -20,7 +20,12 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Mockery\Exception;
 
-
+/**
+ * This job will check the participation or non-participation of the user in a campaign and
+ * if the user does not participate in the campaign, it will join the campaign after checking.
+ * If the campaign has ended or the maximum number of participants has been reached.
+ * This job will have no result and will not add the user to the campaign.
+ */
 class UserParticipationToCampaignJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
@@ -118,10 +123,10 @@ class UserParticipationToCampaignJob implements ShouldQueue
     {
         app(WalletService::class)
             ->store([
-                'user_id' => $this->user->id,
-                'amount' => $this->campaign->amount,
-                'type' => TransactionTypeEnum::INCREASE->value,
-                'reason' => TransactionReasonEnum::FROM_CAMPAIGN->value
-        ]);
+                        'user_id' => $this->user->id,
+                        'amount' => $this->campaign->amount,
+                        'type' => TransactionTypeEnum::INCREASE->value,
+                        'reason' => TransactionReasonEnum::FROM_CAMPAIGN->value
+                    ]);
     }
 }
