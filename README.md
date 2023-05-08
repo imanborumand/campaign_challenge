@@ -55,3 +55,11 @@ For see the project home page open http://localhost:8085
 https://documenter.getpostman.com/view/2528321/2s93eWzsbc
 ```
 
+---
+#### Project charts
+Also you can see all charts in `charts` directory
+
+[charts](charts)
+
+
+       
