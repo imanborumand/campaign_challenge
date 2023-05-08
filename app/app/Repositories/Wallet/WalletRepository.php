@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Wallet;
 
+use App\Enums\Wallet\TransactionTypeEnum;
 use App\Models\Wallet\Wallet;
 use App\Repositories\RepositoryBase;
 use Illuminate\Support\Facades\DB;
@@ -24,10 +25,10 @@ class WalletRepository extends RepositoryBase
     {
         return $this->model->select(
             'user_id',
-            DB::raw('SUM(CASE WHEN type = "increase" THEN amount ELSE -amount END) AS balance'))
-                    ->where('user_id', $userId)
-                    ->groupBy('user_id')
-                    ->first()->balance ?? 0.0;
+            DB::raw('SUM(CASE WHEN type = "' . TransactionTypeEnum::INCREASE->value . '" THEN amount ELSE -amount END) AS balance'))
+                           ->where('user_id', $userId)
+                           ->groupBy('user_id')
+                           ->first()->balance ?? 0;
     }
 
 }
