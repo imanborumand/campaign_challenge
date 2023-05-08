@@ -1,6 +1,6 @@
 ### About challenge
 
-In this project, we can create challenges and users can participate in each challenge using their mobile number, and the amount determined for each challenge will be deposited into the user's wallet if the user takes action at the right time.
+In this project, we can create campaign and users can participate in each campaign using their mobile number, and the amount determined for each campaign will be deposited into the user's wallet if the user takes action at the right time.
 
 ---
 
